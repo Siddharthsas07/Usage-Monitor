@@ -46,7 +46,7 @@ module.exports = function(app) {
         var stats1 = getCPUInfo();
         var startIdle = stats1.idle;
         var startTotal = stats1.total;
-        
+        var usage;
         setTimeout(function() {
             var stats2 = getCPUInfo();
             var endIdle = stats2.idle;
@@ -55,13 +55,13 @@ module.exports = function(app) {
             var idle 	= endIdle - startIdle;
             var total 	= endTotal - startTotal;
             var perc	= idle / total;
-              
-            console.log((1 - perc) * 100 + '%');
-                  
+            usage       = (1 - perc) * 100;
+            console.log(usage + '%');
+            res.send({'usage' : usage + '%'});
         }, 1000 );
 
 
         // just sending string of todos back. Will be in JSON format as mongoDb stores it as documents of JSONs
-        res.send({'usage' : 1 - perc});
+        
     });
 }
