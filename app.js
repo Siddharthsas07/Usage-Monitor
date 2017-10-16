@@ -6,7 +6,7 @@ app.use('/', express.static(__dirname + '/public'));
 
 
 // setting up the port
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 // setting up the static files folder
 app.use('/assets', express.static(__dirname + '/public'));
