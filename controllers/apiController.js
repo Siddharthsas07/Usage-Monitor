@@ -59,7 +59,7 @@ module.exports = function(app) {
             var perc	= idle / total;
             usage       = (1 - perc) * 100;
             console.log(usage + '%');
-            res.send({'usage' : usage);
+            res.send({'usage' : usage});
         }, 1000 );
 
 
