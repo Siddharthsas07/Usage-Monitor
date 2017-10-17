@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Gauge from 'react-svg-gauge';
 import './App.css';
+import RtChart from 'react-rt-chart';
+import PropTypes from 'prop-types';
+
 
 var axios = require('axios');
 
 var config = {
   api: 'http://localhost:8080'
 }
+
+
 
 class App extends Component {
 
@@ -48,11 +53,30 @@ class App extends Component {
   }
 
   render() {
+    var data = {
+      date: new Date(),
+      'CPU Usage': this.state.usage,
+      color : "red"
+    };
+
+    var chart = {
+      axis: {
+          y: { min: 9, max: 91 }
+      },
+      point: {
+          show: false
+      }
+    };
+
     return (
       <div className="App">
         <h1>Usage Monitor</h1>
         <p>Usage is at: {this.state.usage}%</p>
-        <Gauge value={this.state.usage} width={400} height={320} label="This is my Gauge" />
+        {<Gauge value={this.state.usage} width={400} height={320} label="This is my Gauge" />}
+        <RtChart
+          chart={chart}
+          fields={['CPU Usage']}
+          data={data} />
       </div>
     );
   }
